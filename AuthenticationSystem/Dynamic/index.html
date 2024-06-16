@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <title>INNOVATURE BACKEND TASKS</title>
+        <style>
+         h1{
+    
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(34, 138, 180);
+}
+div{
+    color: black;
+    margin-top: 100px;
+}
+/* CSS */
+.button-28 {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  height: 60px;
+  width: 95px;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+}
+
+.button-28:disabled {
+  pointer-events: none;
+}
+
+.button-28:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-28:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+.button1 {
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  background-color: #04AA6D;
+  color: black;
+  border: 2px solid #0e11c6; /* Green */
+  height: 55px;
+  width: 115px;
+  border-radius: 12px;
+}
+.button2 {
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  background-color: #dee826;
+  color: black;
+  border: 2px solid white; /* Green */
+  height: 55px;
+  width: 115px;
+  border-radius: 12px;
+}
+.button3 {
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  background-color: #26dbe8;
+  color: black;
+  border: 2px solid #d6e319; /* Green */
+  height: 55px;
+  width: 115px;
+  border-radius: 12px;
+}
+        </style>
+    </head>
+    <body style="background-color: rgb(164, 161, 161);">
+        <h1>BACK-END TASKS</h1>
+        <h2><u>Task-1:</u></h2>
+        <b>Authentication Systems:</b><br>
+        <div style="margin-left: 100px;margin-top: 10px;"><a href="{% url 'register' %}"><button class="button-28" role="button">SignUp</button></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'login' %}"><button class="button-28" role="button">Login</button></a></div>
+       </div>
+       <b>CRUD Operations:</b><br>
+       <div style="margin-left:100px;margin-top:5px;"> 
+        <a href="{% url 'product-list-create' %}"><button class="button1" role="button">Add Product</button></a><br><br>
+        
+        <a href="{% url 'product-detail' pk=product.id %}"><button class="button1" role="button">View Product</button></a><br>
+       
+       </div>
+       <b>	File Upload and Download :</b><br>
+       <div style="margin-left:100px;margin-top:5px;"> 
+        <a href="{% url 'upload-file' %}"><button class="button2" role="button">File Upload</button></a><br><br>
+        </div>
+        <h2><u>Task-2:</u></h2>
+        <b>	Arithmetic Operations :</b><br>
+       <div style="margin-left:100px;margin-top:5px;"> 
+        <a href="{% url 'operation_api' %}"><button class="button3" role="button">Arithmetic Operations</button></a><br><br>
+        </div
+    </body>
+</html>

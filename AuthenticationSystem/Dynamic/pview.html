@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+{% load static %}
+<style>
+    body{
+        background-color: rgb(85, 222, 177);
+        font-family: 'Times New Roman', Times, serif;
+    }
+    th{
+        background-color: azure;
+    }
+    td{
+        background-color: grey;
+        color: black;
+    }
+    thead{
+        width: 40px;
+        height: 20px;
+        padding: 5px,5px,5px,5px;
+    }
+    button{
+        background-color: rgb(134, 247, 36);
+    }
+</style>
+<body>
+<form>
+    <h1><center><b><u>PRODUCT DETAILS</u></b></center></h1><br>
+    <table border="3px" align="center">
+        <thead>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            {% for m in data %}
+            <b>
+            <tr>
+                <td>{{m.name}}</td>
+                <td>{{m.description}}</td>
+                <td>{{m.price}}</td>
+                <td><button><a href="/products/ProductEdit?uid={{m.id}}">Edit</button></td>
+                <td><button><a href="/products/ProductDelete?uid={{m.id}}">Delete</button></td>
+                     </tr>
+        </b>
+             {% endfor %}
+        </tbody>
+    </table>
+</form>
+    
+</body>
+</html>

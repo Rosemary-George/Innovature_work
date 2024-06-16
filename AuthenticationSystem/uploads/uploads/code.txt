@@ -1,0 +1,73 @@
+https://www.python.org/doc/
+https://www.w3schools.com/python/
+----------------------
+from rest_framework import serializers
+from myapp.models import MyModel
+
+class MyModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MyModel
+        fields = '__all__'
+
+    def create(self, validated_data):
+        """
+        Create and return a new `MyModel` instance, given the validated data.
+        """
+        return MyModel.objects.create(**validated_data)
+
+----------------------
+    def register(request):
+        if request.method=='POST':
+            uname = request.POST.get('uname')
+            email = request.POST.get('email')
+            pswd = request.POST.get('pswd')
+            obj = CustomUser.objects.create(username=uname,email=email,password=pswd)
+            obj.save()
+            if obj:
+                return render(request,"login.html")
+            else:
+                return render(request,'Register.html')
+        else:
+            return render(request,'Register.html')
+------------urls.py
+from django.urls import path
+from Authentication.views import CreateUserView, CustomTokenObtainPairView, TokenRefreshView
+
+from . import views
+urlpatterns = [
+    path('',views.index),
+    path('register/', CreateUserView.as_view(), name='register'),
+    path('login/', CustomTokenObtainPairView.as_view(), name='login'),
+    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+]
+-----------
+
+
+# Create your views here.
+
+from django.shortcuts import render
+from rest_framework import generics, permissions
+from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+from Authentication.models import CustomUser
+from Authentication.serializers import UserSerializer, TokenObtainPairSerializer
+
+def index(request):
+	return render(request,'index.html')
+
+class CreateUserView(generics.CreateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.AllowAny]
+
+class CustomTokenObtainPairView(generics.CreateAPIView):
+    serializer_class = TokenObtainPairSerializer
+    permission_classes = [permissions.AllowAny]
+
+class TokenRefreshView(generics.GenericAPIView):
+    permission_classes = [permissions.AllowAny]
+    def post(self, request, *args, **kwargs):
+        serializer = TokenObtainPairSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        refresh_token = serializer.validated_data.get('refresh')
+        return Response({'refresh': str(refresh_token)})

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+{% load static %}
+<style>
+    body{
+        background-color: rgb(85, 222, 177);
+        font-family: 'Times New Roman', Times, serif
+    }
+    th{
+        background-color: azure;
+    }
+    td{
+        background-color: grey;
+        color: black;
+    }
+    button{
+        background-color: rgb(134, 247, 36);
+    }
+</style>
+<body>
+    <form method="POST" action="/products/ProductUpdate">
+        {% csrf_token %}
+    <h1><center><b><u>PRODUCT DETAILS</u></b></center></h1><br>
+    <table border="3px" align="center">
+        <thead>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+           
+    
+        </thead>
+        <tbody>
+            {% for m in prod %}
+            <b>
+            <tr>
+                <td><input type="text" value="{{m.name}}" name="name">
+                    <input type="text" value="{{m.id}}" name="uid" hidden>
+                </td>
+                <td><input type="text" value="{{m.description}}" name="desc"></td>
+                <td><input type="text" value="{{m.price}}" name="ps"></td>
+                <td><button>Update</button></td>
+            </tr>
+        </b>
+             {% endfor %}
+        </tbody>
+    </table>
+</form>
+    
+</body>
+</html>
